@@ -1,4 +1,4 @@
 pyonedrive
 ==========
 
-Onedrive 
+Onedrive REST api client
