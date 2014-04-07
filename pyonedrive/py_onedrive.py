@@ -138,7 +138,7 @@ class OneDrive(object):
         @return: A generator for folder items
         """
         request_params = {
-            'limit': count,
+            'limit': count
         }
 
         if content_filter:
@@ -268,9 +268,10 @@ class OneDrive(object):
             'url': link
         }
 
-        return requests.request('get',
-                                'https://apis.live.net/v5.0/skydrive/get_item_preview',
-                                params=params)
+        return requests.request(
+            'get',
+            'https://apis.live.net/v5.0/skydrive/get_item_preview',
+            params=params)
 
     def get_comments(self, item_id, count=20, offset=0):
         """ Retrieve a list of comment for the given item
