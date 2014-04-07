@@ -1,3 +1,7 @@
+""" Setup file for distutils
+
+"""
+
 from distutils.core import setup
 
 setup(
