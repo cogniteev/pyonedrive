@@ -13,6 +13,8 @@ setup(
     download_url='https://github.com/tsanch3z/pyonedrive/archive/master.zip',
     description='Onedrive REST api client',
     packages=['pyonedrive'],
+    license='GPLv2',
+    platforms='OS Independent',
     classifiers=[
         'Programming Language :: Python',
         'Programming Language :: Python :: 2.7',
