@@ -3,6 +3,7 @@
 """
 
 from distutils.core import setup
+from setuptools import find_packages
 
 setup(
     name='pyonedrive',
@@ -12,7 +13,7 @@ setup(
     url='https://github.com/tsanch3z/pyonedrive',
     download_url='https://github.com/tsanch3z/pyonedrive/archive/master.zip',
     description='Onedrive REST api client',
-    packages=['pyonedrive', 'authentication'],
+    packages=find_packages(exclude=[]),
     license='GPLv2',
     platforms='OS Independent',
     classifiers=[
