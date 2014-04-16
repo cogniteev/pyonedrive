@@ -9,6 +9,41 @@ Installation
 pip install pyonedrive
 ```
 
+OAuth authentication
+====================
+
+To help you going trough OAuth authentication, you can use the LiveAuth class
+the following way :
+
+``` python
+from pyonedrive import LiveAuth
+
+auth = LiveAuth({client_id}, {client_secret}, {scope}, {redirect_uri})
+
+## For implicit grant flow redirect the user to
+auth.generate_oauth_initiation_url('token')
+
+## For authorization code flow redirect the user to
+auth.generate_oauth_initiation_url('code')
+```
+
+If you choose the implicit grant flow, Live APIs will then be redirected to the
+redirect_uri along with the 'token' as a url parameter.
+
+For authorization code flow, Live APIs hits the redirect_uri with a code as an
+url parameter. This code is to be exchanged for an access_token (aswell as a
+refresh token if the wl.offline_access scope is asked) as follow:
+
+``` python
+response = auth.exchange_oauth_code_for_token({code})
+
+if response.status_code == 200 or response.status_code == 201:
+    ## extract tokens from response
+    tokens = response.json()
+    access_token = tokens['access_token']
+    refresh_token = tokens['refresh_token']
+```
+
 Usage
 =====
 
