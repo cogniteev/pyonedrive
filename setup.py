@@ -6,13 +6,13 @@ from distutils.core import setup
 
 setup(
     name='pyonedrive',
-    version='1.0',
+    version='1.1',
     author='Tony Sanchez',
     author_email='mail.tsanchez@gmail.com',
     url='https://github.com/tsanch3z/pyonedrive',
     download_url='https://github.com/tsanch3z/pyonedrive/archive/master.zip',
     description='Onedrive REST api client',
-    packages=['pyonedrive'],
+    packages=['pyonedrive', 'authentication'],
     license='GPLv2',
     platforms='OS Independent',
     classifiers=[
