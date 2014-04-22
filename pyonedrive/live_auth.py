@@ -31,6 +31,8 @@ class LiveAuth(object):
         @return: the url to redirect the user to
         @rtype: str
         """
+        if response_type != 'code' and response_type != 'token':
+            raise ValueError("response_type must be 'code' or 'token'")
         return '{base}{authorize}?client_id={id}&scope={scope}&' \
                'response_type={type}&redirect_uri={redirect}' \
             .format(base=self._base_url,

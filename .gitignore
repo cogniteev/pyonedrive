@@ -58,3 +58,6 @@ docs/_build/
 
 #Pypi
 MANIFEST
+
+#coverage
+coverage_report

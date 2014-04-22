@@ -9,6 +9,18 @@ Installation
 pip install pyonedrive
 ```
 
+Testing pyonedrive
+==================
+Some tests are provided and can be run using the following command :
+
+``` bash
+[pyonedrive/tests]$ nosetests --with-coverage --cover-package=pyonedrive
+--cover-html --cover-html-dir=../coverage_report --cover-branches
+```
+
+This will run a unit test suite and generate an html coverage report under
+pyonedrive/coverage_report
+
 OAuth authentication
 ====================
 

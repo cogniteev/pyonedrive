@@ -58,7 +58,7 @@ class OneDrive(object):
 
         if response.status_code == 401:
             self.__refresh_token()
-            if method is 'get' or 'post':
+            if method is 'get' or 'delete':
                 params = self.__token_params(params)
             else:
                 headers = self.__bearer_headers()
@@ -125,7 +125,7 @@ class OneDrive(object):
         @rtype: Response
         @return: API's response
         """
-        return self.__request('get', '/me/skydrive/shared/albums')
+        return self.__request('get', 'me/skydrive/shared/albums')
 
     def get_folder_content_generator(self, folder_id, content_filter=None,
                                      count=20):
@@ -195,7 +195,8 @@ class OneDrive(object):
         if content_filter:
             request_params['filter'] = content_filter
 
-        return self.__request('get', 'me/skydrive/shared')
+        return self.__request('get', 'me/skydrive/shared',
+                              params=request_params)
 
     def get_shared_folders(self, count=20, offset=0):
         """ Retrieve the list of folders shared with the signed user
@@ -289,7 +290,7 @@ class OneDrive(object):
         return self.__request('get', '{id}/comments'.format(id=item_id),
                               params=request_params)
 
-    def get_comments_generator(self, item_id, count=20, offset=0):
+    def get_comments_generator(self, item_id, count=20):
         """ Create a generator to get comments from a specified item
 
         @param item_id: the item's to get related comments from
@@ -298,8 +299,7 @@ class OneDrive(object):
         @return: A generator for item's comments
         """
         request_params = {
-            'limit': count,
-            'offset': offset
+            'limit': count
         }
 
         resp = self.__request('get', '{id}/comments'.format(id=item_id),
@@ -328,7 +328,7 @@ class OneDrive(object):
         return self.__request('get', '{id}/tags'.format(id=item_id),
                               params=request_params)
 
-    def get_tags_generator(self, item_id, count=20, offset=0):
+    def get_tags_generator(self, item_id, count=20):
         """ Create a generator to get tags from a specified item
 
         @param item_id: the item's to get related tags from
@@ -337,8 +337,7 @@ class OneDrive(object):
         @return: A generator for item's tags
         """
         request_params = {
-            'limit': count,
-            'offset': offset
+            'limit': count
         }
 
         resp = self.__request('get', '{id}/tags'.format(id=item_id),

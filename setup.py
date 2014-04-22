@@ -7,13 +7,13 @@ from setuptools import find_packages
 
 setup(
     name='pyonedrive',
-    version='1.1',
+    version='1.1.1',
     author='Tony Sanchez',
     author_email='mail.tsanchez@gmail.com',
     url='https://github.com/tsanch3z/pyonedrive',
     download_url='https://github.com/tsanch3z/pyonedrive/archive/master.zip',
     description='Onedrive REST api client',
-    packages=find_packages(exclude=[]),
+    packages=find_packages(exclude=['tests']),
     license='GPLv2',
     platforms='OS Independent',
     classifiers=[
