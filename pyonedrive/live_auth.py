@@ -23,8 +23,6 @@ class LiveAuth(object):
 
         The user must be redirected to the obtained url
 
-        @param redirect_uri: the location to redirect the user to (must match
-        application settings)
         @param response_type: the type of response to ask for the server,
         can be 'token' for implicit grant flow or 'code' for Authorization code
         grant flow
@@ -41,6 +39,7 @@ class LiveAuth(object):
                     scope=self._scope,
                     type=response_type,
                     redirect=self._redirect_uri)
+
     def exchange_oauth_code_for_token(self, code):
         """ Call Live API to exchange a authentication code for token(s)
 
