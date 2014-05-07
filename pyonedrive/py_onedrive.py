@@ -148,7 +148,8 @@ class OneDrive(object):
                               params=request_params).json()
 
         while True:
-            yield resp['data']
+            for content in resp['data']:
+                yield content
             if not 'next' in resp['paging']:
                 break
             resp = self.__request('get', resp['paging']['next'],
@@ -306,7 +307,8 @@ class OneDrive(object):
                               params=request_params).json()
 
         while True:
-            yield resp['data']
+            for content in resp['data']:
+                yield content
             if not 'next' in resp['paging']:
                 break
             resp = self.__request('get', resp['paging']['next'],
@@ -344,7 +346,8 @@ class OneDrive(object):
                               params=request_params).json()
 
         while True:
-            yield resp['data']
+            for content in resp['data']:
+                yield content
             if not 'next' in resp['paging']:
                 break
             resp = self.__request('get', resp['paging']['next'],

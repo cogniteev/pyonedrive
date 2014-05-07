@@ -154,13 +154,13 @@ class OneDriveTestCase(unittest.TestCase):
             res1 = requests.Response()
             res1.status_code = 200
             res1._content = json.dumps(
-                {'data': 'ok',
+                {'data': ['ok'],
                  'paging': {'next': 'next_url'}}
             )
             res2 = requests.Response()
             res2.status_code = 200
             res2._content = json.dumps(
-                {'data': 'ok',
+                {'data': ['ok'],
                  'paging': {}}
             )
 
@@ -194,7 +194,7 @@ class OneDriveTestCase(unittest.TestCase):
             res = requests.Response()
             res.status_code = 200
             res._content = json.dumps(
-                {'data': 'ok',
+                {'data': ['ok'],
                  'paging': {}}
             )
 
@@ -488,13 +488,13 @@ class OneDriveTestCase(unittest.TestCase):
             res1 = requests.Response()
             res1.status_code = 200
             res1._content = json.dumps(
-                {'data': 'ok',
+                {'data': ['ok'],
                  'paging': {'next': 'next_url'}}
             )
             res2 = requests.Response()
             res2.status_code = 200
             res2._content = json.dumps(
-                {'data': 'ok',
+                {'data': ['ok'],
                  'paging': {}}
             )
 
@@ -550,13 +550,13 @@ class OneDriveTestCase(unittest.TestCase):
             res1 = requests.Response()
             res1.status_code = 200
             res1._content = json.dumps(
-                {'data': 'ok',
+                {'data': ['ok'],
                  'paging': {'next': 'next_url'}}
             )
             res2 = requests.Response()
             res2.status_code = 200
             res2._content = json.dumps(
-                {'data': 'ok',
+                {'data': ['ok'],
                  'paging': {}}
             )
 
