@@ -36,7 +36,7 @@ class OneDrive(object):
         """
         return {'Authorization': 'Bearer {token}'.format(token=self.token)}
 
-    def __request(self, method, path, params=None, data=None):
+    def __request(self, method, path, params=None, data=None, stream=False):
         """ Run a request on OneDrive APIs
 
         @param method: HTTP verb
@@ -54,7 +54,8 @@ class OneDrive(object):
             headers = self.__bearer_headers()
 
         response = requests.request(
-            method, url, headers=headers, params=params, data=data)
+            method, url, headers=headers, params=params, data=data,
+            stream=stream)
 
         if response.status_code == 401:
             self.__refresh_token()
@@ -63,7 +64,8 @@ class OneDrive(object):
             else:
                 headers = self.__bearer_headers()
             return requests.request(
-                method, url, headers=headers, params=params, data=data)
+                method, url, headers=headers, params=params, data=data,
+                stream=stream)
         else:
             return response
 
@@ -373,4 +375,5 @@ class OneDrive(object):
         @rtype: Response
         @return: API's response
         """
-        return self.__request('get', '{id}/content'.format(id=file_id))
+        return self.__request('get', '{id}/content'.format(id=file_id),
+            stream=True)
