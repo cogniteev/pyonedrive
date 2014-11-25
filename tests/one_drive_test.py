@@ -621,6 +621,7 @@ class OneDriveTestCase(unittest.TestCase):
                 'https://apis.live.net/v5.0/1/content',
                 params={'access_token': 'token'},
                 data=None,
-                headers=None
+                headers=None,
+                stream=True
             )
             self.assertEquals(r.json(), {'download': 'ok'})

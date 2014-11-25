@@ -53,9 +53,9 @@ class OneDrive(object):
         else:
             headers = self.__bearer_headers()
 
-        response = requests.request(
-            method, url, headers=headers, params=params, data=data,
-            stream=stream)
+        response = self.__do_request(
+            method, url, headers, params, data, stream
+        )
 
         if response.status_code == 401:
             self.__refresh_token()
@@ -63,11 +63,21 @@ class OneDrive(object):
                 params = self.__token_params(params)
             else:
                 headers = self.__bearer_headers()
-            return requests.request(
-                method, url, headers=headers, params=params, data=data,
-                stream=stream)
+            return self.__do_request(
+                method, url, headers, params, data, stream
+            )
         else:
             return response
+
+    def __do_request(self, method, path, headers, params, data, stream):
+        if stream:
+            return requests.request(
+                method, path, headers=headers, params=params, data=data,
+                stream=True)
+        else:
+            return requests.request(
+                method, path, headers=headers, params=params, data=data
+            )
 
     def __refresh_token(self):
         """ Handles the refresh process and update with newly acquired values
