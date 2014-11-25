@@ -7,7 +7,7 @@ from setuptools import find_packages
 
 setup(
     name='pyonedrive',
-    version='1.1.2',
+    version='1.1.3',
     author='Tony Sanchez',
     author_email='mail.tsanchez@gmail.com',
     url='https://github.com/tsanch3z/pyonedrive',

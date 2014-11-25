@@ -1,0 +1,24 @@
+v 1.1.3
+-------
+
+* Add streaming mode for the file download endpoint (tuxnco)
+
+v 1.1.2
+-------
+
+* Generators now yield for each item
+
+v 1.1.1
+-------
+
+* Add some non regression tests
+
+v 1.1
+-------
+
+* Introduce an Oauth helper class
+
+v 1.0
+-------
+
+* First working version
