@@ -45,16 +45,20 @@ class OneDrive(object):
         """
         return {'Authorization': 'Bearer {token}'.format(token=self.token)}
 
-    def __request(self, method, path, params=None, data=None, stream=False):
+    def __request(self, method, path, params=None, data=None, stream=False, absolute=False):
         """ Run a request on OneDrive APIs
 
         @param method: HTTP verb
         @param path: resource endpoint
         @param params: request's parameters
-        @rtype: Response
+        @param absolute: wether the `path` parameter provides full URL or not.
+        @rtype: requests.Response
         @return: API's response
         """
-        url = 'https://apis.live.net/v5.0/%s' % path
+        if absolute:
+            url = path
+        else:
+            url = 'https://apis.live.net/v5.0/' + path
         headers = None
 
         if method is 'get' or 'delete':
