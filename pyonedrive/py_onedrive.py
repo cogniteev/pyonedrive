@@ -10,6 +10,15 @@ class OneDrive(object):
 
     """
 
+    FILE_FACET = 'file'
+    FOLDER_FACET = 'folder'
+    IMAGE_FACET = 'image'
+    PHOTO_FACET = 'photo'
+    AUDIO_FACET = 'audio'
+    VIDEO_FACET = 'video'
+    LOCATION_FACET = 'location'
+    DELETED_FACET = 'deleted'
+
     def __init__(self, token, refresh_token, client_id, client_secret,
                  refresh_callback=None):
         self.token = token
