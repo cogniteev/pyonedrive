@@ -104,8 +104,9 @@ class OneDrive(object):
         }
 
         response = requests.post('https://login.live.com/oauth20_token.srf',
-                                 data=refresh_data).json()
-
+                                 data=refresh_data)
+        response.raise_for_status()
+        response = response.json()
         self.token = response['access_token']
         self.refresh_token = response['refresh_token']
 
