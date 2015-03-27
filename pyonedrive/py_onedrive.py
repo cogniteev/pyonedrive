@@ -2,8 +2,10 @@
 
 """
 
+import logging
 import requests
 
+LOGGER = logging.getLogger(__name__)
 
 class OneDrive(object):
     """ OneDrive basic API providing helpers to ease query
@@ -103,6 +105,7 @@ class OneDrive(object):
             'grant_type': 'refresh_token'
         }
 
+        LOGGER.info("Refreshing OAuth token")
         response = requests.post('https://login.live.com/oauth20_token.srf',
                                  data=refresh_data)
         response.raise_for_status()
