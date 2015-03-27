@@ -306,7 +306,7 @@ class OneDrive(object):
 
         @param item_id: the item's to get comments from ID
         @param count: number of item to get
-        @param offset: pagination offset
+        @param offset: pagination o2ffset
         @rtype: Response
         @return: API's response
         """
