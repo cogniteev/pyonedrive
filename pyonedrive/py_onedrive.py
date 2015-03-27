@@ -207,6 +207,39 @@ class OneDrive(object):
         return self.__request('get', '{id}/files'.format(id=folder_id),
                               params=request_params)
 
+    def get_view_changes_generator(self, drive, change_token=None):
+        """ Provides generator over modified objects since last call
+
+        The last yield object is a dict with the `change_token` key
+        providing the checkpoint you may persist for future call to this method
+
+        @param drive: drive identifier or dict providing the drive identifier in the 'id' key
+        @param change_token: `None` to retrieve all changes, otherwise
+        you may pass the one previously returned to get changes since then.
+
+        @raises: `requests.exception.HTTPError` upon error
+        """
+        params = self.__token_params({'token': change_token} if change_token else {})
+        if isinstance(drive, dict):
+            drive = drive['id']
+        path = 'https://api.onedrive.com/v1.0/drive/items/{0}/view.changes'.format(drive)
+        while True:
+            response = self.__request('get', path, params=params, absolute=True)
+            response.raise_for_status()
+            response = response.json()
+            # Emit fetched items
+            for item in response.get('value', []):
+                yield item
+            if '@changes.resync' in response:
+                # server is not able to provide delta.
+                # => Force full synchronization
+                params = None
+                continue
+            params['token'] = response['@changes.token']
+            if not response.get("@changes.hasMoreChanges", False):
+                break
+        yield {'change_token': params.get('token')}
+
     def get_shared_objects(self, content_filter=None, count=20, offset=0):
         """ Retrieve the list of objects shared with the signed user
 

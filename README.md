@@ -89,6 +89,7 @@ GET :
 - shared items
 - folder content
 - folder content (with generator)
+- changes since specified date (with generator)
 - most recent
 - usage quota
 - share links (read only, read-write, embeddable)
