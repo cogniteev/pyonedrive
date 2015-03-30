@@ -14,7 +14,7 @@ setup(
     version=version,
     author='Tony Sanchez',
     author_email='mail.tsanchez@gmail.com',
-    url=GITHUB_ORG_URL + NAME,
+    url=GITHUB_ORG_URL + '/' + NAME,
     download_url="{0}/{1}/tarball/v{2}".format(GITHUB_ORG_URL, NAME, version),
     description='Onedrive REST api client',
     packages=find_packages(exclude=['tests']),
