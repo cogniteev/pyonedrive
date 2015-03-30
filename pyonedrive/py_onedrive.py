@@ -174,7 +174,9 @@ class OneDrive(object):
             request_params['filter'] = content_filter
 
         resp = self.__request('get', '{id}/files'.format(id=folder_id),
-                              params=request_params).json()
+                              params=request_params)
+        resp.raise_for_status()
+        resp = resp.json()
 
         while True:
             for content in resp['data']:
@@ -182,7 +184,9 @@ class OneDrive(object):
             if not 'next' in resp['paging']:
                 break
             resp = self.__request('get', resp['paging']['next'],
-                                  params=request_params).json()
+                                  params=request_params)
+            resp.raise_for_status()
+            resp = resp.json()
 
     def get_folder_content(self, folder_id, content_filter=None,
                            count=20, offset=0):
@@ -335,7 +339,9 @@ class OneDrive(object):
         @rtype: Response
         @return: API's response
         """
-        link = self.get_shared_read_link(item_id).json()['link']
+        link = self.get_shared_read_link(item_id)
+        link.raise_for_status()
+        link = link.json()['link']
 
         params = {
             'type': size,
@@ -374,9 +380,10 @@ class OneDrive(object):
         request_params = {
             'limit': count
         }
-
         resp = self.__request('get', '{id}/comments'.format(id=item_id),
-                              params=request_params).json()
+                              params=request_params)
+        resp.raise_for_status()
+        resp = resp.json()
 
         while True:
             for content in resp['data']:
@@ -384,7 +391,9 @@ class OneDrive(object):
             if not 'next' in resp['paging']:
                 break
             resp = self.__request('get', resp['paging']['next'],
-                                  params=request_params).json()
+                                  params=request_params)
+            resp.raise_for_status()
+            resp = resp.json()
 
     def get_tags(self, item_id, count=20, offset=0):
         """ Retrieve a list of tags for the given item
@@ -413,9 +422,10 @@ class OneDrive(object):
         request_params = {
             'limit': count
         }
-
         resp = self.__request('get', '{id}/tags'.format(id=item_id),
-                              params=request_params).json()
+                              params=request_params)
+        resp.raise_for_status()
+        resp = resp.json()
 
         while True:
             for content in resp['data']:
@@ -423,7 +433,9 @@ class OneDrive(object):
             if not 'next' in resp['paging']:
                 break
             resp = self.__request('get', resp['paging']['next'],
-                                  params=request_params).json()
+                                  params=request_params)
+            resp.raise_for_status()
+            resp = resp.json()
 
     def delete_item(self, item_id):
         """ Delete the requested item (file, folder, comment, etc)
