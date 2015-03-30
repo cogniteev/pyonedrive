@@ -247,7 +247,7 @@ class OneDrive(object):
             if '@changes.resync' in response:
                 # server is not able to provide delta.
                 # => Force full synchronization
-                params = None
+                params = {}
                 continue
             params['token'] = response['@changes.token']
             if not response.get("@changes.hasMoreChanges", False):
