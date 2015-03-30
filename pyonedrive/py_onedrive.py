@@ -207,13 +207,23 @@ class OneDrive(object):
         return self.__request('get', '{id}/files'.format(id=folder_id),
                               params=request_params)
 
+
+    def get_drive_root(self):
+        response = self.__request('get',
+            'https://api.onedrive.com/v1.0/drive/root',
+            absolute=True
+        )
+        response.raise_for_status()
+        return response.json()
+
     def get_view_changes_generator(self, drive, change_token=None):
         """ Provides generator over modified objects since last call
 
         The last yield object is a dict with the `change_token` key
         providing the checkpoint you may persist for future call to this method
 
-        @param drive: drive identifier or dict providing the drive identifier in the 'id' key
+        @param drive: drive identifier or dict providing the drive identifier in the 'id' key,
+        returned by the `get_drive_root` member method.
         @param change_token: `None` to retrieve all changes, otherwise
         you may pass the one previously returned to get changes since then.
 
